@@ -20,6 +20,12 @@ class UsersController implements \Anax\DI\IInjectionAware
     {
         $this->users = new \Anax\Users\User();
         $this->users->setDI($this->di);
+        $this->questions = new \Anax\Questions\CQuestions();
+        $this->questions->setDI($this->di);
+        $this->answers = new \Anax\Answers\CAnswers();
+        $this->answers->setDI($this->di);
+        $this->comments = new \Anax\CommentDb\CommentsInDb();
+        $this->comments->setDI($this->di);
     }
 
     /**
@@ -30,8 +36,137 @@ class UsersController implements \Anax\DI\IInjectionAware
     public function setupAction()
     {
         $this->users->init();
-        $this->redirectTo('users/list/');
     }
+    /**
+     * Display user with id.
+     *
+     * @param int $id of user to display
+     *
+     * @return void
+     */
+    public function profidAction($id = null)
+    {
+        $user = $this->users->find($id);
+
+        // Show users gravatar in big size somewhere here.
+        $this->dispatcher->forward([
+            'controller' => 'users',
+            'action'     => 'profile',
+            'params'    => [$user->acronym ],
+        ]);
+    }
+
+    /**
+     * Display most active users.
+     * Sum number of questions and answers contributed.
+     *
+     * @param int $id of user to display
+     *
+     * @return void
+     */
+    public function mostactiveAction($count = 3)
+    {
+        $questions = $this->questions->countByUser();
+        $answers = $this->answers->countByUser();
+        $comments = $this->comments->countByUser();
+        $useractivity = array();
+        foreach ($questions as $qActivity) {
+            $userActivity[$qActivity->user_id] = [
+                'activity'  => $qActivity->Cnt,
+                'user_id'   => $qActivity->user_id,
+            ];
+        }
+        foreach ($answers as $Activity) {
+            $userActivity[$Activity->user_id]['activity'] += $Activity->Cnt;
+        }
+        foreach ($comments as $Activity) {
+            $userActivity[$Activity->user_id]['activity'] += $Activity->Cnt;
+        }
+        arsort($userActivity);
+        $mostActiveUsers = array_slice($userActivity, 0, 3, true);
+        $all = array();
+        foreach ($mostActiveUsers as $user) {
+            $all[] = $this->users->find($user['user_id'])->getProperties();
+        }
+        $this->views->add('default/page', [
+            'title'     => 'Mest aktiva användare',
+            'content'     => '',
+        ]);
+        $this->views->add('users/view_short', [
+            'users' => $all,
+        ]);
+    }
+
+    /**
+     * Display user with acronym.
+     *
+     * @param int $id of user to display
+     *
+     * @return void
+     */
+    public function profileAction($acronym = null)
+    {
+        $user = $this->users->query()
+        ->where('acronym = ' . "'$acronym'")
+        ->execute()[0];
+        // Get user questions
+        // TODO: move queries to model?
+        // TODO: use sql count function instead.
+        $questions = $this->questions->query()
+        ->where('user_id = ' . "'$user->id'")
+        ->execute();
+        $nrOfQuestions = sizeof($questions);
+        // Build route to user questions and send to view.
+        $urlQuestions = $this->url->create('questions/list/questions/'.$acronym);
+
+        // Get user answers
+        $answers = $this->answers->query()
+        ->where('user_id = ' . "'$user->id'")
+        ->execute();
+        $nrOfAnswers = sizeof($answers);
+        // Build route to user answers and send to view.
+        $urlAnswers = $this->url->create('questions/list/answers/'.$acronym);
+
+        $gravatarSize = 120;
+        $user->gravatar = \Anax\Users\User::getGravatar($user->email, $gravatarSize);
+        $this->theme->setTitle("Byggare $acronym");
+        $this->views->add('users/view', [
+            'user' => $user,
+            'urlQuestions' => $urlQuestions,
+            'nrOfQuestions' => $nrOfQuestions,
+            'urlAnswers' => $urlAnswers,
+            'nrOfAnswers' => $nrOfAnswers,
+        ]);
+
+        // If user is logged in and profile is logged in users show additional links.
+        if ($this->users->loggedIn()) {
+            $loggedInUser = $this->users->loggedInUser();
+            if ($loggedInUser->id == $user->id) {
+                $this->views->add('default/page', [
+                    'content' => "Hej {$user->name}. Vad vill du göra? ",
+                    'links' => [
+                        [
+                            'href' => $this->url->create('questions/ask'),
+                            'text' => "Fråga en fråga",
+                        ],
+                        [
+                            'href' => $this->url->create('users/logout'),
+                            'text' => "Logga ut mig",
+                        ],
+                        [
+                            'href' => $this->url->create("users/update/{$user->id}"),
+                            'text' => "Redigera min profil",
+                        ],
+                        [
+                            'href' => $this->url->create('users/add'),
+                            'text' => "Lägg till ny användare",
+                        ],
+                    ],
+                ]);
+            }
+        }
+    }
+
     /**
      * List all users.
      *
@@ -40,11 +175,50 @@ class UsersController implements \Anax\DI\IInjectionAware
     public function listAction()
     {
         $all = $this->users->findAll();
+        $gravatarSize = 80;
+        // TODO: move below to User model?
+        foreach ($all as $user) {
+            $user->gravatar = \Anax\Users\User::getGravatar($user->email, $gravatarSize);
+        }
 
-        $this->theme->setTitle("List all users");
+        // Display logged in user.
+        if ($this->users->loggedIn()) {
+            $user = $this->users->loggedInUser();
+            // Show users gravatar in big size somewhere here.
+            $this->dispatcher->forward([
+                'controller' => 'users',
+                'action'     => 'profile',
+                'params'    => [$user->acronym ],
+                // 'params'    => [$user['acronym'] ],
+            ]);
+        } else {
+            // Dispatch to login Form
+            $this->dispatcher->forward([
+                'controller' => 'users',
+                'action'     => 'login',
+                'params'    => [ ],
+            ]);
+        }
+
+        $this->theme->setTitle("Byggare");
         $this->views->add('users/list-all', [
             'users' => $all,
-            'title' => "View all users",
+            'title' => "Alla byggare",
+        ]);
+    }
+    /**
+     * List all users for admin purpose.
+     *
+     * @return void
+     */
+    public function listadminAction()
+    {
+        $all = $this->users->findAll();
+
+        $this->theme->setTitle("List all users");
+        $this->views->add('users/list-admin', [
+            'users' => $all,
+            'title' => "Administrate all users",
         ]);
     }
     /**
@@ -65,7 +239,7 @@ class UsersController implements \Anax\DI\IInjectionAware
         ]);
     }
     /**
-     * List user with id.
+     * List user with id for admin purpose.
      *
      * @param int $id of user to display
      *
@@ -81,33 +255,29 @@ class UsersController implements \Anax\DI\IInjectionAware
         ]);
     }
     /**
-     * Add new user.
+     * Display user as card.
      *
-     * @param string $acronym of user to add.
+     * @param int $id of user to display
      *
      * @return void
      */
-    public function add1Action($acronym = null)
+    public function cardAction($id = null, $q_or_a = '', $text = '')
     {
-        if (!isset($acronym)) {
-            die("Missing acronym");
-        }
+        $gravatarSize = 40;
 
-        $now = gmdate('Y-m-d H:i:s');
+        $user = $this->users->find($id)->getProperties();
+        $gravatar = \Anax\Users\User::getGravatar($user['email'], $gravatarSize);
+        $profileUrl = $this->url->create("users/profile/{$user['acronym']}");
 
-        $this->users->save([
-            'acronym' => $acronym,
-            'email' => $acronym . '@mail.se',
-            'name' => 'Mr/Mrs ' . $acronym,
-            'password' => password_hash($acronym, PASSWORD_DEFAULT),
-            'created' => $now,
-            'active' => $now,
+        $this->views->add('users/card', [
+            'user' => $user,
+            'q_or_a' => $q_or_a,
+            'gravatar' => $gravatar,
+            'text' => $text,
+            'profileUrl' => $profileUrl,
         ]);
-
-        // $url = $this->url->create('users/id/' . $this->users->id);
-        // $this->response->redirect($url);
-        $this->redirectTo('users/id/' . $this->users->id);
     }
+
     /**
      * Add new user.
      *
@@ -117,14 +287,18 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function addAction($acronym = null)
     {
-        $this->di->session(); // Will load the session service which also starts the session
-        $form = $this->createAddUserForm();
-        $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
-        $this->di->theme->setTitle("Add user");
-        $this->di->views->add('default/page', [
-            'title' => "Add user",
-            'content' => $form->getHTML()
-        ]);
+        if ($this->users->loggedIn()) {
+            $this->di->session(); // Will load the session service which also starts the session
+            $form = $this->createAddUserForm();
+            $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
+            $this->di->theme->setTitle("Add user");
+            $this->di->views->add('default/page', [
+                'title' => "Add user",
+                'content' => $form->getHTML()
+            ]);
+        } else {
+            $this->redirectTo($this->url->create('users/login'));
+        }
     }
     private function createAddUserForm()
     {
@@ -150,10 +324,10 @@ class UsersController implements \Anax\DI\IInjectionAware
                 'type'      => 'submit',
                 'callback'  => [$this, 'callbackSubmitAddUser'],
             ],
-            'submit-fail' => [
-                'type'      => 'submit',
-                'callback'  => [$this, 'callbackSubmitFailAddUser'],
-            ],
+            // 'submit-fail' => [
+            //     'type'      => 'submit',
+            //     'callback'  => [$this, 'callbackSubmitFailAddUser'],
+            // ],
         ]);
     }
     /**
@@ -170,15 +344,15 @@ class UsersController implements \Anax\DI\IInjectionAware
             ->where("acronym = '$acronym'")
             ->execute();
         if (count($all)!=0) {
-            die("User with acronym $acronym already in model.");
+            die("User with acronym $acronym already registered.");
         }
         // Save user data to database
         $now = gmdate('Y-m-d H:i:s');
         $this->users->save([
             'acronym' => $form->Value('acronym'),
             'email' => $form->Value('email'),
-            'name' => 'Mr/Mrs ' . $form->Value('name'),
-            'password' => password_hash($acronym, PASSWORD_DEFAULT),
+            'name' => $form->Value('name'),
+            'password' => md5($acronym),
             'created' => $now,
             'active' => $now,
         ]);
@@ -205,7 +379,7 @@ class UsersController implements \Anax\DI\IInjectionAware
     public function callbackSuccess($form)
     {
         $form->AddOUtput("<p><i>Form was submitted and the callback method returned true.</i></p>");
-        $this->redirectTo('users/id/' . $this->users->id);
+        $this->redirectTo('users/list/');
     }
     /**
      * Callback What to do when form could not be processed?
@@ -227,22 +401,28 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function updateAction($id = null)
     {
-        $this->di->session(); // Will load the session service which also starts the session
-        // Check if valid entry exists.
-        $all = $this->users->query()
-            ->where("id = '$id'")
-            ->execute();
-        if (count($all)!=1) {
-            die("User with id $id not found.");
+        if ($this->users->loggedIn()) {
+            $this->di->session(); // Will load the session service which also starts the session
+            // Check if valid entry exists.
+            $all = $this->users->query()
+                ->where("id = '$id'")
+                ->execute();
+            if (count($all)!=1) {
+                die("User with id $id not found.");
+            }
+            $user = $this->users->find($id);
+            unset($user->session);
+            unset($user->gravatar);
+            $form = $this->createUpdateUserForm($user);
+            $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
+            $this->di->theme->setTitle("Updatera profil");
+            $this->di->views->add('default/page', [
+                'title' => "Updatera profil",
+                'content' => $form->getHTML()
+            ]);
+        } else {
+            $this->redirectTo($this->url->create('users/login'));
         }
-        $user = $this->users->find($id);
-        $form = $this->createUpdateUserForm($user);
-        $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
-        $this->di->theme->setTitle("Update user");
-        $this->di->views->add('default/page', [
-            'title' => "Update user",
-            'content' => $form->getHTML()
-        ]);
     }
     private function createUpdateUserForm($user = null)
     {
@@ -273,6 +453,7 @@ class UsersController implements \Anax\DI\IInjectionAware
             ],
             'submit' => [
                 'type'      => 'submit',
+                'label'       => 'Uppdatera',
                 'callback'  => [$this, 'callbackSubmitUpdateUser'],
             ],
             'submit-fail' => [
@@ -301,8 +482,8 @@ class UsersController implements \Anax\DI\IInjectionAware
         $this->users->save([
             'acronym' => $form->Value('acronym'),
             'email' => $form->Value('email'),
-            'name' => 'Mr/Mrs ' . $form->Value('name'),
-            // 'password' => password_hash($acronym, PASSWORD_DEFAULT),
+            'name' => $form->Value('name'),
+            // 'password' => md5($acronym, PASSWORD_DEFAULT),
             // 'created' => $now,
             // 'active' => $now,
         ]);
@@ -455,5 +636,117 @@ class UsersController implements \Anax\DI\IInjectionAware
             'users' => $all,
             'title' => "Users that are in wastebasket",
         ]);
+    }
+
+    /**
+     * Logout user.
+     *
+     * @return void
+     */
+    public function logoutAction()
+    {
+        $this->session->set('user_logged_in', null);
+        $this->redirectTo($_SERVER['HTTP_REFERER']);
+    }
+    /**
+     * Login user.
+     *
+     * @return void
+     */
+    public function loginAction()
+    {
+        // TODO: Need to sweep session? How?
+        // Set saveInSession = false instead.
+        $this->di->session(); // Will load the session service which also starts the session
+        $form = $this->createLoginForm();
+        $form->check([$this, 'callbackLoginSuccess'], [$this, 'callbackLoginSuccess']);
+        $this->di->theme->setTitle("Logga in");
+        $this->di->views->add('default/page', [
+            'title' => "Logga in",
+            'content' => $form->getHTML()
+        ]);
+    }
+    private function createLoginForm()
+    {
+        return $this->di->form->create([], [
+            'user' => [
+                'type'        => 'text',
+                'label'       => 'Användarnamn:',
+                'required'    => true,
+                'validation'  => ['not_empty'],
+            ],
+            'password' => [
+                'type'        => 'password',
+                'label'       => 'Lösenord:',
+                'required'    => true,
+                'validation'  => ['not_empty'],
+            ],
+            'submit' => [
+                'type'      => 'submit',
+                'callback'  => [$this, 'callbackSubmitLogin'],
+            ],
+            'submit-fail' => [
+                'type'      => 'submit',
+                'callback'  => [$this, 'callbackSubmitFailLogin'],
+            ],
+        ]);
+    }
+    /**
+     * Callback for submit-button.
+     *
+     */
+    public function callbackSubmitLogin($form)
+    {
+        // $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
+        // $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
+        // Authenticate user.
+        // Check if user exists
+        // Check if password matches hash
+        $userName = $form->Value('user');
+        $password = $form->Value('password');
+        $user = $this->users->query()
+            ->where("acronym = '$userName'")
+            ->execute();
+        if (sizeof($user)==1) {
+            // Set user in session if successful authentication
+            if (md5($password)==$user[0]->password) {
+                $this->session->set('user_logged_in', $userName);
+            }
+        }
+
+        // $form->AddOutput("<p><b>Användare: " . $form->Value('user') . "</b></p>");
+        // $form->AddOutput("<p><b>Lösenord: " . $form->Value('password') . "</b></p>");
+        $form->saveInSession = false;
+        return true;
+    }
+    /**
+     * Callback for submit-button.
+     *
+     */
+    public function callbackSubmitFailLogin($form)
+    {
+        // TODO: Remove this?
+        // $form->AddOutput("<p><i>DoSubmitFail(): Form was submitted but I failed to process/save/validate it</i></p>");
+        return false;
+    }
+    /**
+     * Callback What to do if the form was submitted?
+     *
+     */
+    public function callbackLoginSuccess($form)
+    {
+        // $form->AddOUtput("<p><i>Form was submitted and the callback method returned true.</i></p>");
+        // Redirect to page posted from.
+        $this->redirectTo('users/list');
+    }
+    /**
+     * Callback What to do when form could not be processed?
+     *
+     */
+    public function callbackLoginFail($form)
+    {
+        $form->AddOutput("<p><i>Form was submitted and the Check() method returned false.</i></p>");
+        // Redirect to comment form.
+        // $this->redirectTo();
     }
 }

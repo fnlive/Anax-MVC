@@ -10,49 +10,56 @@ return [
 
     // Here comes the menu strcture
     'items' => [
-
         // This is a menu item
-        'home'  => [
-            'text'  => 'Om mig',
+        'home' => [
+            'text'  =>'Hem',
             'url'   => $this->di->get('url')->create(''),
-            'title' => 'Sidan om mig'
+            'title' => 'Hem',
         ],
 
         // This is a menu item
-        'report' => [
-            'text'  =>'Redovisning',
-            'url'   => $this->di->get('url')->create('redovisning'),
-            'title' => 'Redovisning',
+        'questions' => [
+            'text'  =>'Frågor',
+            'url'   => $this->di->get('url')->create('questions'),
+            'title' => 'Frågor',
         ],
 
         // This is a menu item
-        'calendar' => [
-            'text'  =>'Kalender',
-            'url'   => $this->di->get('url')->create('calendar'),
-            'title' => 'Kalender',
+        'tags' => [
+            'text'  =>'Kategorier',
+            'url'   => $this->di->get('url')->create('tags/list'),
+            'title' => 'Kategorier',
         ],
 
         // This is a menu item
-        'dice' => [
-            'text'  =>'Tärning',
-            'url'   => $this->di->get('url')->create('dice'),
-            'title' => 'Kasta tärning',
-            // Here we add the submenu, with some menu items, as part of a existing menu item
-            'submenu' => [
-                'items' => [
-
-                    // This is a menu item of the submenu
-                    'roll'  => [
-                        'text'  => 'Kasta tärning',
-                        'url'   => $this->di->get('url')->create('dice/roll'),
-                        'title' => 'Kasta tärning'
-                    ],
-
-                ],
-            ],
+        'users' => [
+            'text'  =>'Byggare',
+            'url'   => $this->di->get('url')->create('users/list'),
+            'title' => 'Byggare',
         ],
 
         // This is a menu item
+        'ask' => [
+            'text'  => 'Fråga',
+            'url'   => $this->di->get('url')->create('questions/ask'),
+            'title' => 'Fråga en fråga',
+        ],
+        'loginout' => [
+            // 'text'  => $this->di->get('users')->loggedIn() ? 'true text' : 'false text',
+            'text'  => 'Login',
+            'url'   => $this->di->get('url')->create('users/login'),
+            'title' => 'Logga in eller ut',
+        ],
+        'about' => [
+            // 'text'  => $this->di->get('users')->loggedIn() ? 'true text' : 'false text',
+            'text'  => 'Om oss',
+            'url'   => $this->di->get('url')->create('about'),
+            'title' => 'Om oss',
+        ],
+
+
+        // This is a menu item
+        // TODO: Make visible for admin logged in.
         'admin' => [
             'text'  =>'Admin',
             'url'   => $this->di->get('url')->create('admin'),
@@ -62,34 +69,16 @@ return [
                 'items' => [
 
                     // This is a menu item of the submenu
-                    'admincontacts'  => [
-                        'text'  => 'Meddelanden',
-                        'url'   => $this->di->get('url')->create('admincontacts'),
-                        'title' => 'Meddelanden'
+                    'adminquestions'  => [
+                        'text'  => 'Frågor',
+                        'url'   => $this->di->get('url')->create('adminquestions'),
+                        'title' => 'Frågor'
                     ],
                     // This is a menu item of the submenu
                     'useradmin'  => [
                         'text'  => 'Användare',
                         'url'   => $this->di->get('url')->create('users'),
                         'title' => 'Användare'
-                    ],
-                    'commentadmin' => [
-                        'text'  =>'Kommentarer',
-                        'url'   => $this->di->get('url')->create('commentadmin'),
-                        'title' => 'Comment administration page',
-                        // Here we add the submenu, with some menu items, as part of a existing menu item
-                        'submenu' => [
-                            'items' => [
-
-                                // This is a menu item of the submenu
-                                'lorem'  => [
-                                    'text'  => 'Commenting test',
-                                    'url'   => $this->di->get('url')->create('commentadmin/lorem'),
-                                    'title' => 'Commenting test'
-                                ],
-
-                            ],
-                        ],
                     ],
 
                 ],

@@ -21,7 +21,12 @@ return [
      * Add default views.
      */
     'views' => [
-        ['region' => 'header', 'template' => 'welcome/header', 'data' => [], 'sort' => -1],
+        ['region' => 'header', 'template' => 'welcome/header',
+        'data'     => [
+            'siteTitle' => "Gamla Hus",
+            'siteTagline' => "Alla frågor och svar mellan tak och grund",
+        ],
+        'sort' => -1],
         ['region' => 'grid', 'template' => 'grid/index', 'data' => [], 'sort' => -1],
         [
             'region' => 'navbar',
@@ -51,7 +56,7 @@ return [
         'lang' => 'sv',
 
         // Append this value to each <title>
-        'title_append' => ' | Fredrik&LESS',
+        'title_append' => ' | Bygga Hus',
 
         // Stylesheets
         'stylesheets' => ['css/anax-grid/style.php'],
