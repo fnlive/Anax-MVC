@@ -23,8 +23,8 @@ return [
     'views' => [
         ['region' => 'header', 'template' => 'welcome/header',
         'data'     => [
-            'siteTitle' => "Gamla Hus",
-            'siteTagline' => "Alla frågor och svar mellan tak och grund",
+            'siteTitle' => "ECMA or JavaScript",
+            'siteTagline' => "Learning JS, DOM, and other stuff",
         ],
         'sort' => -1],
         ['region' => 'grid', 'template' => 'grid/index', 'data' => [], 'sort' => -1],
@@ -56,7 +56,7 @@ return [
         'lang' => 'sv',
 
         // Append this value to each <title>
-        'title_append' => ' | Bygga Hus',
+        'title_append' => ' | JavaScript',
 
         // Stylesheets
         'stylesheets' => ['css/anax-grid/style.php'],

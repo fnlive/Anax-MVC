@@ -30,7 +30,7 @@ return [
             'template' => 'me/header',
             'data'     => [
                 'siteTitle' => "Gamla Hus",
-                'siteTagline' => "Alla frågor och svar mellan tak och grund",
+                'siteTagline' => "Alla frågor och svar mell",
             ],
             'sort'     => -1
         ],

@@ -2,7 +2,11 @@
  * Styling for me-pages
 */
 
-.sitetitle, p {
+@accant:#5C7BA1;
+
+// .sitetitle, .siteslogan, p, a, h1, h2, h3, h4, h5, h6 {
+* {
+    font-family: sans-serif;
 }
 
 
@@ -11,12 +15,13 @@
   top: -60px;
   left: 10px;
   font-size: 48px;
+  color: @accant;
 }
 
 .siteslogan {
   position: relative;;
   top: -30px;
-  left: -210px;
+  left: -420px;
   font-style: italic;
   color: #666;
 }
@@ -72,13 +77,13 @@ blockquote p {
 
 /*
 * Link colors
-* link: 5C7BA1
+* link: 5C7BA1 @accant
 * visited: 1755A1
 * hoover: 9EB3D7
 */
 a {
     text-decoration: none;
-    color: #5C7BA1;
+    color: @accant;
 }
 a:hover {
     color: #9EB3D7;
