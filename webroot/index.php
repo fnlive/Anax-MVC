@@ -58,20 +58,21 @@ $app->router->add('source', function () use ($app) {
 // JS Lekplats
 $app->router->add('lekplats', function () use ($app) {
     $app->theme->setTitle("Lekplats");
+    $lekplats = "http://www.student.bth.se/~frnf15/dbwebb-kurser/javascript/me/kmom01/lekplats/";
     $app->views->add('default/page', [
         'title' => "JS Lekplats",
         'content' => "Page with JavaScript examples. ",
         'links' => [
             [
-                'href' => $app->url->create('../../../lekplats/resize/'),
+                'href' => $app->url->create($lekplats . 'resize/'),
                 'text' => "Resize",
             ],
             [
-                'href' => $app->url->create('../../../lekplats/baddie/'),
+                'href' => $app->url->create($lekplats . 'baddie/'),
                 'text' => "Baddie",
             ],
             [
-                'href' => $app->url->create('../../../lekplats/transform/'),
+                'href' => $app->url->create($lekplats . 'transform/'),
                 'text' => "Transform",
             ],
         ],
