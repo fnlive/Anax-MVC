@@ -1,5 +1,21 @@
 # Rapporter
 
+## kmom02
+
+Har kommit in lite bättre i javascript nu. De lite större övningarna med Boulderdash och Roulette var nyttiga. Jag har läst på lite mer om DOM API't och kan hitta nya metoder hjälpligt. I Roulettespelet kunde jag återskapa log-rutan och stoppa in senaste raden överst med .insertBefore och .firstChild. På spelplanen kunde jag lysa upp siffran som kulan hamnade på genom att välja motsvarande element med .childNodes[x] och ändra klassen genom .classname. Kapitlet [DOM](http://eloquentjavascript.net/13_dom.html) i [Eloquent JavaScript](http://eloquentjavascript.net/) tillsammans med [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) gav lite intro.
+
+Tal och strängar är lite besvärligt. Variabler och retur-värden som man tror borde innehålla ett tal innehåller oftare en sträng-representation av talet som då gör att det andra talet som man försöker addera det med också omvandlas till en sträng. Resultatet blir då en sträng-konkatenering av talen (t.ex. 20+30 = 2030). Jag använder parseInt() för att omvandal text-strängen till ett tal.
+
+Jag slet ganska mycket med bollen som skulle klickas på för att flytta den. Jag lyckades inte centrera bollen utan den satte sig uppe i övre högra hörnet och ville inte därifrån. Mitt script lyckades inte läsa ut dimension på flash-div'en så jag hårdkodade in en offset på 200px för att få ut den på planen. Här fick jag pröva på att använda javascript debuggern i firebug för att lättare kunna se variablers värden. Knuff-längden på bollen är proportionell mot klickpunktens avstånd från bollens mitt. Ju längre ifrån, desto längre skjuts bollen iväg i motsats riktning.
+
+"Regular expressions" verkar kraftfulla och bra att lära sig. Försöker lära mig mer genom att använda dem i Atom's sökfunktion.
+
+Jag har installerat och kör linter-jscs och linter-jshint inifrån Atom. Jag har också kört [JSLint](http://jslint.com/) på mina program. Man behöver trixa lite med inställningarna, t.ex. "tolerate for" och lägga in globala variabler. Jag låter bli att rätta upp t.ex. i++ i mina for-loopar, som jag tycker är mer lättlästa än i += 1 eller i = i + 1.
+
+Jag har lagt in två funktioner i min variant av mos.js, fnlive.js. Dels en random-funktion som returnerar ett slumptal (heltal) mellan inparametrarna min och max. Dels en funktion getOffset(), kopierad från mos.js, som returnerar positionen på ett element.
+
+Jag gjorde inget extra till Boulderdash eller Roulettespelet.
+
 ## Kmom01
 
 Min utvecklingsmiljö består av Windows 10 eller 7 med xampp, cygwin och Atom texteditor. Under phpmvc-kursen har jag använt git och github och känner mig numera rätt bekväm med de lite vanligare operationerna. Repona lägger jag på dropbox med mjuka länkar från webbservern. Under phpmvc har jag  använt lintning i Atom med linter-php, linter-phpcs och csslint. Skall nu försöka prova linter-jshint och linter-jscs.

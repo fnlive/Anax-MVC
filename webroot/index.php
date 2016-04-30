@@ -58,22 +58,53 @@ $app->router->add('source', function () use ($app) {
 // JS Lekplats
 $app->router->add('lekplats', function () use ($app) {
     $app->theme->setTitle("Lekplats");
-    $lekplats = "http://www.student.bth.se/~frnf15/dbwebb-kurser/javascript/me/kmom01/lekplats/";
+    // $lekplats = "http://www.student.bth.se/~frnf15/dbwebb-kurser/javascript/me/kmom01/lekplats/";
+    $lekplats = ($_SERVER['SERVER_NAME']=='localhost') ?
+        '../../../lekplats/' :
+        'http://www.student.bth.se/~frnf15/dbwebb-kurser/javascript/me/kmom02/lekplats/';
     $app->views->add('default/page', [
         'title' => "JS Lekplats",
-        'content' => "Page with JavaScript examples. ",
+        'content' => "Page with JavaScript examples from kmom02. ",
         'links' => [
             [
-                'href' => $app->url->create($lekplats . 'resize/'),
-                'text' => "Resize",
+                'href' => $app->url->create($lekplats . 'ball/'),
+                'text' => "Ball",
             ],
             [
-                'href' => $app->url->create($lekplats . 'baddie/'),
-                'text' => "Baddie",
+                'href' => $app->url->create($lekplats . 'boulderdash/'),
+                'text' => "Boulderdash",
             ],
             [
-                'href' => $app->url->create($lekplats . 'transform/'),
-                'text' => "Transform",
+                'href' => $app->url->create($lekplats . 'dates/'),
+                'text' => "Dates",
+            ],
+            [
+                'href' => $app->url->create($lekplats . 'dice/'),
+                'text' => "Dice",
+            ],
+            [
+                'href' => $app->url->create($lekplats . 'exception/'),
+                'text' => "Exception",
+            ],
+            [
+                'href' => $app->url->create($lekplats . 'literals/'),
+                'text' => "literals",
+            ],
+            [
+                'href' => $app->url->create($lekplats . 'numbers/'),
+                'text' => "Numbers",
+            ],
+            [
+                'href' => $app->url->create($lekplats . 'regexp/'),
+                'text' => "Regular expresions",
+            ],
+            [
+                'href' => $app->url->create($lekplats . 'roulette/'),
+                'text' => "Roulette",
+            ],
+            [
+                'href' => $app->url->create($lekplats . 'strings/'),
+                'text' => "Strings",
             ],
         ],
     ]);
