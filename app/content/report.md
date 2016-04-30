@@ -1,5 +1,15 @@
 # Rapporter
 
+## kmom03
+
+Skriv redovisningstext på din me-sida. Skriv ett stycke (minst 15 meningar) om kursmomentet. Reflektera över svårigheter, problem, lösningar, erfarenheter, lärdomar, resultatet, etc.
+
+Se till att följande frågor besvaras i texten:
+
+    Vad tycker du om jQuery, hur känns det?
+    Vilka är dina erfarenheter av jQuery inför detta kursmoment?
+    Berätta om din plugin.
+
 ## kmom02
 
 Har kommit in lite bättre i javascript nu. De lite större övningarna med Boulderdash och Roulette var nyttiga. Jag har läst på lite mer om DOM API't och kan hitta nya metoder hjälpligt. I Roulettespelet kunde jag återskapa log-rutan och stoppa in senaste raden överst med .insertBefore och .firstChild. På spelplanen kunde jag lysa upp siffran som kulan hamnade på genom att välja motsvarande element med .childNodes[x] och ändra klassen genom .classname. Kapitlet [DOM](http://eloquentjavascript.net/13_dom.html) i [Eloquent JavaScript](http://eloquentjavascript.net/) tillsammans med [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) gav lite intro.
