@@ -51,7 +51,8 @@ $di->set('AnswersController', function () use ($di) {
 // $app = new \Anax\Kernel\CAnax($di);
 $app = new \Anax\MVC\CApplicationBasic($di);
 
-$app->theme->configure(ANAX_APP_PATH . 'config/theme-grid.php');
+// $app->theme->configure(ANAX_APP_PATH . 'config/theme-grid.php');
+$app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 // On production server, set pretty urls and use rewrite in .htaccess
 $app->url->setUrlType(
     ($_SERVER['SERVER_NAME']=='localhost') ?
@@ -64,15 +65,5 @@ $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 // $app->theme->addStylesheet('css/comments.css');
 // $app->theme->addStylesheet('css/users.css');
 
-
-// $di->set('answers', '\Anax\Answers\CAnswers');
-// $di->set('comments', '\Anax\CommentDb\CommentsInDb');
-// $di->set('users', '\Anax\Users\User');
-
-
-// $app->comments = new \Anax\CommentDb\CommentsInDb();
-// $app->comments->setDI($di);
-// $app->answers = new \Anax\Answers\CAnswers();
-// $app->answers->setDI($di);
 $app->users = new \Anax\Users\User();
 $app->users->setDI($di);

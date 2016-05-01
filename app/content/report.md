@@ -1,5 +1,15 @@
 # Rapporter
 
+## kmom03
+
+Det har känts kul att arbeta med jQuery. Där det tidigare varit omständligt och stökigt att arbeta med DOM och javascript, känns det lättare och mer intuitivt att använda jQuery. Övningarna flöt på ganska bra och jag klarade mig på egen hand fram till paket 6/lightbox. Jag utgick ifrån exemplet i Ninja-boken som dock saknade skalning av bilden när den visades i lightbox-div'en. Jag tog fram höjd/bredd/ratio på webbläsarfönster och bild för att kunna sätta rätt bredd/höjd på lightbox-div'en och få rätt ratio på visad bild. I paket 7/galleri hade jag väldigt svårt att få bilderna att visas med rätt ratio. Jag lyckades inte få ut original-storleken på bild-filen. När jag tjuvkikade på [dbwebb's](http://dbwebb.se/javascript/lekplats/nine-small-examples-to-get-started-with-jquery/) exempel såg det ut som scriptet hämtar en bild som förminskats till rätt storlek av servern. Smart.
+
+Det har blivit ganska myket debuggande med firebug under övningarnas gång. I början mycket skrivande till console, efter ett tag lite mer försök med att sätta brytpunkter i skriptet och se på variablerna i firebug, samt titta i html-tabben för att se html-elementen och dess stil.
+
+Jag har ingen egentlig erfarenhet av jQuery förutom en liten tutorial på  [codecademy](https://www.codecademy.com/). Exemplen där är dock enkla och betydligt mer tillrättalagda.
+
+Jag valde att göra en lightbox plugin, [fnbox](https://github.com/fnlive/fnbox), som i princip är samma kod jag gjorde för paket 6. Jag började att pröva ut pluginen under lekplat i en ny folder, vilket gick väldigt smidigt. I nästa steg integrerade jag den på min [me-sida](http://www.student.bth.se/~frnf15/dbwebb-kurser/javascript/me/kmom03/Anax-MVC/webroot/lightbox). Ganska rättframt även om det är en del filer som behöver editeras och nya som skall skapas inuti Anax-MVC. Jag gjorde en ny vy-template för att visa markdown-fil med beskrivningen av plugin samt bild-galleri skapat från array med bild-filerna. Min plugin kan så klart utökas med mer funktioner, t.ex. visning av bildtext, snyggare ramar, ikon för att stänga lightbox, etc. Jag hade också gärna prövat på att göra en iframe som lightbox-popup som innehåller en webbsida. Detta får komma längre fram. 
+
 ## kmom02
 
 Har kommit in lite bättre i javascript nu. De lite större övningarna med Boulderdash och Roulette var nyttiga. Jag har läst på lite mer om DOM API't och kan hitta nya metoder hjälpligt. I Roulettespelet kunde jag återskapa log-rutan och stoppa in senaste raden överst med .insertBefore och .firstChild. På spelplanen kunde jag lysa upp siffran som kulan hamnade på genom att välja motsvarande element med .childNodes[x] och ändra klassen genom .classname. Kapitlet [DOM](http://eloquentjavascript.net/13_dom.html) i [Eloquent JavaScript](http://eloquentjavascript.net/) tillsammans med [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) gav lite intro.

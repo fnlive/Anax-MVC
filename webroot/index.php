@@ -54,6 +54,86 @@ $app->router->add('source', function () use ($app) {
 
 });
 
+// Lightbox example
+$app->router->add('lightbox', function () use ($app) {
+    $app->theme->addStylesheet('../../lekplats/fnbox/fnbox.css');
+    $app->theme->setTitle("fnbox");
+
+    $content = $app->fileContent->get('fnbox.md');
+    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
+
+    $byline = $app->fileContent->get('byline.md');
+    $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
+
+    $app->views->add('fnbox/page', [
+        'content' => $content,
+        'byline' => $byline,
+        'galleryImages' => [
+            [
+                'href' => 'img/lb-demo/2016-01-23%2013.01.56.jpg',
+                'tn' => 'img/lb-demo/2016-01-23%2013.01.56_tn.jpg',
+                'alt' => 'Rambo mosse vintern 2016'
+            ],
+            [
+                'href' => 'img/lb-demo/2016-01-23%2013.06.47.jpg',
+                'tn' => 'img/lb-demo/2016-01-23%2013.06.47_tn.jpg',
+                'alt' => 'Rambo mosse vintern 2016'
+            ],
+            [
+                'href' => 'img/lb-demo/2016-01-23%2013.07.00.jpg',
+                'tn' => 'img/lb-demo/2016-01-23%2013.07.00_tn.jpg',
+                'alt' => 'Rambo mosse vintern 2016'
+            ],
+            [
+                'href' => 'img/lb-demo/2016-01-23%2013.07.10.jpg',
+                'tn' => 'img/lb-demo/2016-01-23%2013.07.10_tn.jpg',
+                'alt' => 'Rambo mosse vintern 2016'
+            ],
+            [
+                'href' => 'img/lb-demo/2016-01-23%2013.11.00.jpg',
+                'tn' => 'img/lb-demo/2016-01-23%2013.11.00_tn.jpg',
+                'alt' => 'Rambo mosse vintern 2016'
+            ],
+            [
+                'href' => 'img/lb-demo/2016-01-23%2013.15.21.jpg',
+                'tn' => 'img/lb-demo/2016-01-23%2013.15.21_tn.jpg',
+                'alt' => 'Rambo mosse vintern 2016'
+            ],
+            [
+                'href' => 'img/lb-demo/2016-01-23%2013.15.39.jpg',
+                'tn' => 'img/lb-demo/2016-01-23%2013.15.39_tn.jpg',
+                'alt' => 'Rambo mosse vintern 2016'
+            ],
+            [
+                'href' => 'img/lb-demo/2016-01-23%2013.18.20.jpg',
+                'tn' => 'img/lb-demo/2016-01-23%2013.18.20_tn.jpg',
+                'alt' => 'Rambo mosse vintern 2016'
+            ],
+            [
+                'href' => 'img/lb-demo/2016-01-23%2013.21.27.jpg',
+                'tn' => 'img/lb-demo/2016-01-23%2013.21.27_tn.jpg',
+                'alt' => 'Rambo mosse vintern 2016'
+            ],
+            [
+                'href' => 'img/lb-demo/2016-01-23%2013.36.46.jpg',
+                'tn' => 'img/lb-demo/2016-01-23%2013.36.46_tn.jpg',
+                'alt' => 'Rambo mosse vintern 2016'
+            ],
+            [
+                'href' => 'img/lb-demo/2016-01-23%2013.39.51.jpg',
+                'tn' => 'img/lb-demo/2016-01-23%2013.39.51_tn.jpg',
+                'alt' => 'Rambo mosse vintern 2016'
+            ],
+            [
+                'href' => 'img/lb-demo/2016-01-23%2013.40.11.jpg',
+                'tn' => 'img/lb-demo/2016-01-23%2013.40.11_tn.jpg',
+                'alt' => 'Rambo mosse vintern 2016'
+            ],
+        ]
+    ]);
+
+});
+
 
 // JS Lekplats
 $app->router->add('lekplats', function () use ($app) {

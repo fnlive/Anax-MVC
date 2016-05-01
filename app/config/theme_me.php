@@ -29,8 +29,8 @@ return [
             'region'   => 'header',
             'template' => 'me/header',
             'data'     => [
-                'siteTitle' => "Gamla Hus",
-                'siteTagline' => "Alla frågor och svar mell",
+                'siteTitle' => "ECMA or JavaScript",
+                'siteTagline' => "Learning JS, DOM, and other stuff",
             ],
             'sort'     => -1
         ],
@@ -59,7 +59,7 @@ return [
         'lang' => 'sv',
 
         // Append this value to each <title>
-        'title_append' => ' | Gamla Hus',
+        'title_append' => ' | fnlive',
 
         // Stylesheets
         'stylesheets' => ['css/style.css', 'css/navbar_me.css'],
@@ -77,7 +77,10 @@ return [
         'jquery' => '//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js',
 
         // Array with javscript-files to include
-        'javascript_include' => [],
+        'javascript_include' => [
+            '../../lekplats/fnbox/jquery.fnbox.js',
+            '../../lekplats/fnbox/test_fnbox.js',
+        ],
 
         // Use google analytics for tracking, set key or null to disable
         'google_analytics' => null,
