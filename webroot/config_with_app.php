@@ -65,15 +65,5 @@ $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 // $app->theme->addStylesheet('css/comments.css');
 // $app->theme->addStylesheet('css/users.css');
 
-
-// $di->set('answers', '\Anax\Answers\CAnswers');
-// $di->set('comments', '\Anax\CommentDb\CommentsInDb');
-// $di->set('users', '\Anax\Users\User');
-
-
-// $app->comments = new \Anax\CommentDb\CommentsInDb();
-// $app->comments->setDI($di);
-// $app->answers = new \Anax\Answers\CAnswers();
-// $app->answers->setDI($di);
 $app->users = new \Anax\Users\User();
 $app->users->setDI($di);

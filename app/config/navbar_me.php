@@ -20,6 +20,11 @@ return [
             'url'   => $this->di->get('url')->create('lekplats'),
             'title' => 'Lekplats',
         ],
+        'fnbox' => [
+            'text'  =>'fnbox',
+            'url'   => $this->di->get('url')->create('lightbox'),
+            'title' => 'fnbox',
+        ],
         'redovisning' => [
             'text'  => 'Redovisning',
             'url'   => $this->di->get('url')->create('redovisning'),
