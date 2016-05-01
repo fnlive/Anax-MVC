@@ -7,7 +7,11 @@ fnbox är en ny lättviktig lightbox som visar dina bilder från sin bästa sida
 
 Ladda ner [fnbox från github](https://github.com/fnlive/fnbox).
 
-inkludera jquery.fnbox.js på webb-sidan, förslagsvis långt ner på sidan före </body> men efter inkludering av jquery.js.
+Lägg in dina bilder med följande html-kod:
+
+    <a href='img/image.jpg' class='lightbox'><img src="img/image_tn.jpg" alt="Din alt text/></a>
+
+Inkludera jquery.fnbox.js på webb-sidan, förslagsvis långt ner på sidan före &lt;/body> men efter inkludering av jquery.js.
 
 Välj ut de element du vill få upp med *fnbox* i ett javascript som du inkluderar på sidan, t.ex.
 
@@ -18,7 +22,7 @@ Välj ut de element du vill få upp med *fnbox* i ett javascript som du inkluder
         });
     });
 
-Alla <a> element med klassen "lightbox" kommer då väljas ut och bilden som <a> elementet länkar till kommer att visas i lightbox.
+Alla &lt;a> element med klassen "lightbox" kommer då väljas ut och bilden som &lt;a> elementet länkar till kommer att visas i lightbox.
 
 Lägg till style för lightbox i din css/less-fil (se fnbox.css):
 
@@ -34,10 +38,6 @@ Lägg till style för lightbox i din css/less-fil (se fnbox.css):
         position:fixed;
         background: darkgray;
     }
-
-Lägg in dina bilder med följande html-kod:
-
-    <a href='img/fnbox_image.jpg' class='lightbox'><img src="img/fnbox_image_tn.jpg" alt="Din alt text/></a>
 
 Klart för att börja använda fnbox.
 
