@@ -62,7 +62,11 @@ return [
         'title_append' => ' | fnlive',
 
         // Stylesheets
-        'stylesheets' => ['css/style.css', 'css/navbar_me.css'],
+        'stylesheets' => [
+            'css/style.css',
+            'css/webshop.css',
+            'css/navbar_me.css',
+        ],
 
         // Inline style
         'style' => null,
@@ -78,8 +82,10 @@ return [
 
         // Array with javscript-files to include
         'javascript_include' => [
-            '../../lekplats/fnbox/jquery.fnbox.js',
-            '../../lekplats/fnbox/test_fnbox.js',
+            '../app/src/fnbox/jquery.fnbox.js',
+            '../app/src//fnbox/test_fnbox.js',
+            '../app/src/Webshop/cart.js',
+            '../app/src/Webshop/checkout.js',
         ],
 
         // Use google analytics for tracking, set key or null to disable

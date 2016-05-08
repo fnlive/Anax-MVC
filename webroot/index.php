@@ -54,6 +54,18 @@ $app->router->add('source', function () use ($app) {
 
 });
 
+// webbshop
+$app->router->add('webshop', function () use ($app) {
+    $app->theme->setTitle("Butik");
+    // dispatcher for recent Questions
+    $app->dispatcher->forward([
+        'controller' => 'webshop',
+        'action'     => 'cart',
+    ]);
+
+});
+
+
 // Lightbox example
 $app->router->add('lightbox', function () use ($app) {
     $app->theme->addStylesheet('../../lekplats/fnbox/fnbox.css');

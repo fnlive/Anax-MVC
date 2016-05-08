@@ -12,6 +12,12 @@ require __DIR__.'/config.php';
 // Create services and inject into the app.
 $di  = new \Anax\DI\CDIFactory();
 
+// Load webbshop Controller
+$di->set('WebshopController', function () use ($di) {
+    $controller = new \Anax\Webshop\WebshopController();
+    $controller->setDI($di);
+    return $controller;
+});
 $di->set('UsersController', function () use ($di) {
     $controller = new \Anax\Users\UsersController();
     $controller->setDI($di);

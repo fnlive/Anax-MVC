@@ -15,6 +15,11 @@ return [
             'url'   => $this->di->get('url')->create(''),
             'title' => 'Hem',
         ],
+        'webshop' => [
+            'text'  =>'Butik',
+            'url'   => $this->di->get('url')->create('webshop'),
+            'title' => 'Butik',
+        ],
         'lekplats' => [
             'text'  =>'Lekplats',
             'url'   => $this->di->get('url')->create('lekplats'),
