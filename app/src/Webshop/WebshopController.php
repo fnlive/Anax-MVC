@@ -19,27 +19,6 @@ class WebshopController implements \Anax\DI\IInjectionAware
     // private $items;
 
     /**
-     * Initialize the controller.
-     *
-     * @return void
-     */
-    public function initialize()
-    {
-        // $this->questions = new \Anax\Questions\CQuestions();
-        // $this->questions->setDI($this->di);
-    }
-
-    /**
-     * Setup initial data.
-     *
-     * @return void
-     */
-    public function setupAction()
-    {
-        // do stuff.
-    }
-
-    /**
      * Display items and shoppingcart.
      *
      * @return void

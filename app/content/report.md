@@ -2,14 +2,13 @@
 
 ## kmom04
 
-Skriv redovisningstext på din me-sida. Skriv ett stycke (minst 15 meningar) om kursmomentet. Reflektera över svårigheter, problem, lösningar, erfarenheter, lärdomar, resultatet, etc.
+Övningarna med ajax har varit roliga. De första övningarna var ganska lätta att förstå vad som hände. Med firebug under Net-flicken gick det att följa samverkan mellan webbläsaren och servern och följa javascriptens POST och GET från webbläsaren och se svaret som servern skickade tillbaks. Flikarna Konsol, HTML, och Net ger en bra översikt vad som händer. Den sista  övningen med checkout var mer komplexa och svårare att följa vad som hände. När jag försökte dumpa variabler och objekt inifrån det php-script som javascript pratade med gick det inget bra. Inget kom ut på skärmen som det brukade. Jag hittade istället php error_log() funktionen för att dumpa strängar och variabler och kunde se dem skrivas ut i realtid i ett konsol-fönster mha "tail -f php_error_log". Smidigt.
 
-Se till att följande frågor besvaras i texten:
+Jag har inga tidigare erfarenhet av att arbeta med ajax. jQuery verkar göra det väldigt enkelt och lätt att jobba med ajax.
 
-    Vad tycker du om Ajax, hur känns det att jobba med?
-    Vilka är dina erfarenheter av Ajax inför detta kursmoment?
-    Berätta om din webbshop på din me-sida, hur gjorde du?
-    Lyckades du göra extra-uppgiften och paketera din kod?
+För att få in webbshoppen på min me-sida skapade jag en ny modul, Webshop, under app. Huveddelen av koden ligger under src/Webbshop med bla en WebshopController som hanterar både shopp- och checkout-sidan. Controllern innehåller actions för att visa  och checka ut kundvagnen. De två javascripten samt de två php-ajax-scripten för shop och checkout är i princip identiska med de från övningen. Url-parametern i ajax-anropet har jag hårdkodat till en absolut url då jag hade svårt att hitta ett bra sätt att få till en relativ url. Det mesta av den statiska html-koden från shoppen och checkout-sidan lade jag i två template-filer under view/webshop. Bilder lade jag under img/webshop och styles under css/webshop.css. Det var väldigt rättframt att lägga in webbshoppen i Anax-MVC. Det gick smidigt att få ihop Anax dispatch/controller/view-funktioner ihop med ajax och javascript.
+
+Jag gjorde inte extra-uppgiften.
 
 ## kmom03
 

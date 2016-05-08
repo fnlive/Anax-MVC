@@ -28,8 +28,9 @@
             <button id="clearcart">Clear</button>
         </div>
         <div id="shoppingcart-checkout">
-            <a href="<?=$checkoutLink?>">
-                <button id="checkout">Checkout</button>
+            <a class="button" href="<?=$checkoutLink?>">
+                Checkout
+                <!-- <button id="checkout">Checkout</button> -->
             </a>
         </div>
     </div>
