@@ -109,3 +109,10 @@ article img {
   margin-top: 0;
   padding: 1em;
 }
+
+.clearfix {
+    overflow: auto;
+}
+.clearboth {
+    clear: both;
+}

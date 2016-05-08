@@ -15,16 +15,22 @@ return [
             'url'   => $this->di->get('url')->create(''),
             'title' => 'Hem',
         ],
+        'webshop' => [
+            'text'  =>'Butik',
+            'url'   => $this->di->get('url')->create('webshop'),
+            'title' => 'Butik',
+        ],
         'lekplats' => [
             'text'  =>'Lekplats',
             'url'   => $this->di->get('url')->create('lekplats'),
             'title' => 'Lekplats',
         ],
-        'fnbox' => [
-            'text'  =>'fnbox',
-            'url'   => $this->di->get('url')->create('lightbox'),
-            'title' => 'fnbox',
-        ],
+        // TODO: fix so lighbox works again.
+        // 'fnbox' => [
+        //     'text'  =>'fnbox',
+        //     'url'   => $this->di->get('url')->create('lightbox'),
+        //     'title' => 'fnbox',
+        // ],
         'redovisning' => [
             'text'  => 'Redovisning',
             'url'   => $this->di->get('url')->create('redovisning'),

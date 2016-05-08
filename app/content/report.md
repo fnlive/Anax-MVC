@@ -1,5 +1,15 @@
 # Rapporter
 
+## kmom04
+
+Övningarna med ajax har varit roliga. De första övningarna var ganska lätta att förstå vad som hände. Med firebug under Net-flicken gick det att följa samverkan mellan webbläsaren och servern och följa javascriptens POST och GET från webbläsaren och se svaret som servern skickade tillbaks. Flikarna Konsol, HTML, och Net ger en bra översikt vad som händer. Den sista  övningen med checkout var mer komplexa och svårare att följa vad som hände. När jag försökte dumpa variabler och objekt inifrån det php-script som javascript pratade med gick det inget bra. Inget kom ut på skärmen som det brukade. Jag hittade istället php error_log() funktionen för att dumpa strängar och variabler och kunde se dem skrivas ut i realtid i ett konsol-fönster mha "tail -f php_error_log". Smidigt.
+
+Jag har inga tidigare erfarenhet av att arbeta med ajax. jQuery verkar göra det väldigt enkelt och lätt att jobba med ajax.
+
+För att få in webbshoppen på min me-sida skapade jag en ny modul, Webshop, under app. Huveddelen av koden ligger under src/Webbshop med bla en WebshopController som hanterar både shopp- och checkout-sidan. Controllern innehåller actions för att visa  och checka ut kundvagnen. De två javascripten samt de två php-ajax-scripten för shop och checkout är i princip identiska med de från övningen. Url-parametern i ajax-anropet har jag hårdkodat till en absolut url då jag hade svårt att hitta ett bra sätt att få till en relativ url. Det mesta av den statiska html-koden från shoppen och checkout-sidan lade jag i två template-filer under view/webshop. Bilder lade jag under img/webshop och styles under css/webshop.css. Det var väldigt rättframt att lägga in webbshoppen i Anax-MVC. Det gick smidigt att få ihop Anax dispatch/controller/view-funktioner ihop med ajax och javascript.
+
+Jag gjorde inte extra-uppgiften.
+
 ## kmom03
 
 Det har känts kul att arbeta med jQuery. Där det tidigare varit omständligt och stökigt att arbeta med DOM och javascript, känns det lättare och mer intuitivt att använda jQuery. Övningarna flöt på ganska bra och jag klarade mig på egen hand fram till paket 6/lightbox. Jag utgick ifrån exemplet i Ninja-boken som dock saknade skalning av bilden när den visades i lightbox-div'en. Jag tog fram höjd/bredd/ratio på webbläsarfönster och bild för att kunna sätta rätt bredd/höjd på lightbox-div'en och få rätt ratio på visad bild. I paket 7/galleri hade jag väldigt svårt att få bilderna att visas med rätt ratio. Jag lyckades inte få ut original-storleken på bild-filen. När jag tjuvkikade på [dbwebb's](http://dbwebb.se/javascript/lekplats/nine-small-examples-to-get-started-with-jquery/) exempel såg det ut som scriptet hämtar en bild som förminskats till rätt storlek av servern. Smart.
@@ -8,7 +18,7 @@ Det har blivit ganska myket debuggande med firebug under övningarnas gång. I b
 
 Jag har ingen egentlig erfarenhet av jQuery förutom en liten tutorial på  [codecademy](https://www.codecademy.com/). Exemplen där är dock enkla och betydligt mer tillrättalagda.
 
-Jag valde att göra en lightbox plugin, [fnbox](https://github.com/fnlive/fnbox), som i princip är samma kod jag gjorde för paket 6. Jag började att pröva ut pluginen under lekplat i en ny folder, vilket gick väldigt smidigt. I nästa steg integrerade jag den på min [me-sida](http://www.student.bth.se/~frnf15/dbwebb-kurser/javascript/me/kmom03/Anax-MVC/webroot/lightbox). Ganska rättframt även om det är en del filer som behöver editeras och nya som skall skapas inuti Anax-MVC. Jag gjorde en ny vy-template för att visa markdown-fil med beskrivningen av plugin samt bild-galleri skapat från array med bild-filerna. Min plugin kan så klart utökas med mer funktioner, t.ex. visning av bildtext, snyggare ramar, ikon för att stänga lightbox, etc. Jag hade också gärna prövat på att göra en iframe som lightbox-popup som innehåller en webbsida. Detta får komma längre fram. 
+Jag valde att göra en lightbox plugin, [fnbox](https://github.com/fnlive/fnbox), som i princip är samma kod jag gjorde för paket 6. Jag började att pröva ut pluginen under lekplat i en ny folder, vilket gick väldigt smidigt. I nästa steg integrerade jag den på min [me-sida](http://www.student.bth.se/~frnf15/dbwebb-kurser/javascript/me/kmom03/Anax-MVC/webroot/lightbox). Ganska rättframt även om det är en del filer som behöver editeras och nya som skall skapas inuti Anax-MVC. Jag gjorde en ny vy-template för att visa markdown-fil med beskrivningen av plugin samt bild-galleri skapat från array med bild-filerna. Min plugin kan så klart utökas med mer funktioner, t.ex. visning av bildtext, snyggare ramar, ikon för att stänga lightbox, etc. Jag hade också gärna prövat på att göra en iframe som lightbox-popup som innehåller en webbsida. Detta får komma längre fram.
 
 ## kmom02
 
