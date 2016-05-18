@@ -1,6 +1,6 @@
 <h1>Test HTML5 websockets</h1>
 <p>Test the echo- and broadcast-server.</p>
-<p>Connect towards ws://localhost:1337 or ws://dbwebb.se:1337. Set protocol to either "echo-protocol" or "broadcast-protocol". <strong>Connect</strong> to socket server. <stong>Send message</strong> to server. <strong>Close connection</strong> to server. (when changing sub-protocol do a page refresh ctrl-r to catch new value). </p>
+<p>Connect towards ws://localhost:1337 or ws://dbwebb.se:1337. Set protocol to either "echo-protocol" or "broadcast-protocol". <strong>Connect</strong> to socket server. <strong>Send message</strong> to server. <strong>Close connection</strong> to server. (when changing sub-protocol do a page refresh ctrl-r to catch new value). </p>
 <p>
     <label>Connect:</label><br>
     <input id='url' value='ws://localhost:1337'/>
