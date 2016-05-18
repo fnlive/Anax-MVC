@@ -54,6 +54,14 @@ $app->router->add('source', function () use ($app) {
 
 });
 
+// Websockets
+$app->router->add('websockets', function () use ($app) {
+    $app->theme->setTitle("Websockets");
+    $app->views->add('websockets/page', [
+    ]);
+
+});
+
 // webbshop
 $app->router->add('webshop', function () use ($app) {
     $app->theme->setTitle("Butik");

@@ -82,10 +82,12 @@ return [
 
         // Array with javscript-files to include
         'javascript_include' => [
+            'js/fnlive.js',
             '../app/src/fnbox/jquery.fnbox.js',
             '../app/src//fnbox/test_fnbox.js',
             '../app/src/Webshop/cart.js',
             '../app/src/Webshop/checkout.js',
+            '../app/src/Websockets/ws_client.js',
         ],
 
         // Use google analytics for tracking, set key or null to disable
