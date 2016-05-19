@@ -134,3 +134,12 @@ article img {
      margin-top: 0;
      margin-bottom: 0;
  }
+ .disconnected {
+     background-color: salmon;
+ }
+ .connected {
+     background-color: lightgreen;
+ }
+#constatus, #subprotoused {
+
+}

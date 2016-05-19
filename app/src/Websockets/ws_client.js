@@ -12,15 +12,18 @@ $(document).ready(function () {
 
     var url = $('#url').val(),
         websocket,
-        // subProtocol = "echo-protocol"
-        // subProtocol = "broadcast-protocol"
+        // subProtocol = "echo-protocol",
+        // subProtocol = "broadcast-protocol",
         subProtocol = $('#sub-protocol').val(),
         connect = document.getElementById('connect'),
         close = document.getElementById('close'),
         send = document.getElementById('send');
+        $('#constatus').html(' disconnected');
 
     // Event handler to create the websocket connection when someone clicks the button #connect
     connect.addEventListener('click', function(event) {
+        url = $('#url').val();
+        subProtocol = $('#sub-protocol').val();
         console.log('Connecting to: ' + url + ' with ' + subProtocol);
         websocket = new WebSocket(url, subProtocol);
 
@@ -28,6 +31,8 @@ $(document).ready(function () {
         websocket.onopen = function() {
             console.log('The websocket is now open.');
             logMessage('The websocket is now open.');
+            $('#status').addClass('connected');
+            $('#constatus').html(' connected to <strong>' + url + '</strong> with <strong>' + subProtocol + '</strong>');
             websocket.send('Thanks for letting me connect to you.');
         }
 
@@ -39,7 +44,9 @@ $(document).ready(function () {
         // Eventhandler when the websocket is closed.
         websocket.onclose = function() {
             console.log('The websocket is now closed.');
-            logMessage('The websocket is now closed.')
+            logMessage('The websocket is now closed.');
+            $('#status').removeClass('connected');
+            $('#constatus').html('disconnected');
         }
     }, false);
 
@@ -52,6 +59,7 @@ $(document).ready(function () {
             console.log("Closing connection to: " + websocket.url);
             websocket.close();
         }
+        $('#constatus').innerHTML = '';
     });
 
     // Add eventhandler to send message
