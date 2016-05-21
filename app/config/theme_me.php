@@ -87,7 +87,7 @@ return [
             // '../app/src/fnbox/test_fnbox.js',
             // '../app/src/Webshop/cart.js',
             // '../app/src/Webshop/checkout.js',
-            // '../app/src/Websockets/ws_client.js',
+            '../app/src/Websockets/ws_client.js',
             '../app/src/Websockets/ws_chat_client.js',
             // '../app/src/Spaceinvaders/Spaceinvaders.js',
         ],

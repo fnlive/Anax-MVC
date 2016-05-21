@@ -18,7 +18,11 @@ $(document).ready(function () {
         connect = document.getElementById('connect'),
         close = document.getElementById('close'),
         send = document.getElementById('send');
-        $('#constatus').html(' disconnected');
+
+    $('#constatus').html(' disconnected');
+
+    if (connect) {
+        console.log('Found connect.');
 
     // Event handler to create the websocket connection when someone clicks the button #connect
     connect.addEventListener('click', function(event) {
@@ -76,4 +80,5 @@ $(document).ready(function () {
         }
     });
 
+    }
 });

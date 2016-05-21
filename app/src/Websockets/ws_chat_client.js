@@ -19,19 +19,24 @@ $(document).ready(function () {
 
     var url = $('#url').val(),
         websocket,
-        subProtocol = $('#sub-protocol').val(),
+        subProtocol = 'chat-protocol',
+        // subProtocol = $('#sub-protocol').val(),
         user = $('#user').val(),
-        connect = document.getElementById('connect'),
-        close = document.getElementById('close'),
-        send = document.getElementById('send');
-        $('#constatus').html(' disconnected');
+        connect = document.getElementById('chat-connect'),
+        close = document.getElementById('chat-close'),
+        send = document.getElementById('chat-send');
+
+    $('#constatus').html(' disconnected');
+    if (connect) {
+        console.log('Found connect.');
+
 
     // Event handler to create the websocket connection when someone clicks the button #connect
     connect.addEventListener('click', function(event) {
         if (!websocket  || websocket.readyState === 3) {
             console.log('The websocket is not connected to a server. Try connect.');
             url = $('#url').val();
-            subProtocol = $('#sub-protocol').val();
+            subProtocol = 'chat-protocol';
             user = $('#user').val();
             console.log('Connecting to: ' + url + ' with ' + subProtocol + ' for user ' + user);
             websocket = new WebSocket(url, subProtocol);
@@ -117,5 +122,5 @@ $(document).ready(function () {
             websocket.send(JSON.stringify(msg));
         }
     });
-
+    }
 });

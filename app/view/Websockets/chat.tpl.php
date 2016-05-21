@@ -6,13 +6,8 @@
 <p>
     <label>Connect:</label><br>
     <input id='url' value='ws://localhost:8012'/>
-    <select name="sub-protocol" id="sub-protocol">
-        <option value="chat-protocol">chat-protocol</option>
-        <option value="echo-protocol">echo-protocol</option>
-        <option value="broadcast-protocol">broadcast-protocol</option>
-    </select>
-    <button id='connect'>Connect</button>
-    <button id='close'>Close connection</button>
+    <button id='chat-connect'>Connect</button>
+    <button id='chat-close'>Close connection</button>
 </p>
 <p>
     <label>User:</label><br>
@@ -21,14 +16,14 @@
 <p>
     <label>Send message:</label><br>
     <input id='message' value=''/>
-    <button id='send'>Send message</button>
+    <button id='chat-send'>Send message</button>
 </p>
 <p id='status' class='disconnected'>status: <span id='constatus'></span></p>
 <div class="console">
     <div class="container">
         <label>Log: </label><br>
         <div id="output"></div>
-    </div> 
+    </div>
     <div class="container">
         <label>Users: </label><br>
         <div id="users"></div>
