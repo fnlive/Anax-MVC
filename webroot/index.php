@@ -62,6 +62,14 @@ $app->router->add('websockets', function () use ($app) {
 
 });
 
+// Space Invaders
+$app->router->add('spaceinvaders', function () use ($app) {
+    $app->theme->setTitle("Space Invaders");
+    $app->views->add('Spaceinvaders/page', [
+    ]);
+
+});
+
 // webbshop
 $app->router->add('webshop', function () use ($app) {
     $app->theme->setTitle("Butik");

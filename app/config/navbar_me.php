@@ -25,10 +25,10 @@ return [
             'url'   => $this->di->get('url')->create('webshop'),
             'title' => 'Butik',
         ],
-        'lekplats' => [
-            'text'  =>'Lekplats',
-            'url'   => $this->di->get('url')->create('lekplats'),
-            'title' => 'Lekplats',
+        'spaceinvaders' => [
+            'text'  =>'Space Invaders',
+            'url'   => $this->di->get('url')->create('spaceinvaders'),
+            'title' => 'Space Invaders',
         ],
         // TODO: fix so lighbox works again.
         // 'fnbox' => [

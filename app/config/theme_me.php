@@ -88,6 +88,7 @@ return [
             '../app/src/Webshop/cart.js',
             '../app/src/Webshop/checkout.js',
             '../app/src/Websockets/ws_client.js',
+            '../app/src/Spaceinvaders/Spaceinvaders.js',
         ],
 
         // Use google analytics for tracking, set key or null to disable
