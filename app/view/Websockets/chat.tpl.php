@@ -1,7 +1,6 @@
 <h1>Chat client</h1>
-<p>Chat client with possibility to also run towards echo- or broadcast-server.</p>
 <p>
-    Use server ws://localhost:8012, ws://nodejs1.student.bth.se:8012 or ws://nodejs2.student.bth.se:8012.
+    Use server ws://localhost:8012, ws://nodejs1.student.bth.se:8012 or ws://nodejs2.student.bth.se:8012. <strong>Connect</strong> to socket server. <strong>Send message</strong> to server. <strong>Close connection</strong> to server.
 </p>
 <p>
     <label>Connect:</label><br>
