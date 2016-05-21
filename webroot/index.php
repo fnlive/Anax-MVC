@@ -54,6 +54,14 @@ $app->router->add('source', function () use ($app) {
 
 });
 
+// Chat client
+$app->router->add('chat', function () use ($app) {
+    $app->theme->setTitle("Chat");
+    $app->views->add('websockets/chat', [
+    ]);
+
+});
+
 // Websockets
 $app->router->add('websockets', function () use ($app) {
     $app->theme->setTitle("Websockets");

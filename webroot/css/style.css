@@ -120,7 +120,7 @@ article img {
 /**
  * Here comes specific style for websockets page.
  */
- #output  {
+ #users, #output  {
      font-size: 80%;
      /*background-color: white;*/
      background-color: #ECE0E0;
@@ -128,11 +128,18 @@ article img {
      height: 300px;
      overflow: scroll;
      width: 100%;
+     float: left;
  }
 
- #output p {
+#users p, #output p {
      margin-top: 0;
      margin-bottom: 0;
+ }
+ .console {
+     overflow: auto;
+ }
+ .container {
+     float: left;
  }
  .disconnected {
      background-color: salmon;
@@ -140,8 +147,5 @@ article img {
  .connected {
      background-color: lightgreen;
  }
-#constatus, #subprotoused {
-
-}
 
 canvas{border:1px solid #999;background-color:#000;}

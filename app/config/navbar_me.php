@@ -15,6 +15,11 @@ return [
             'url'   => $this->di->get('url')->create(''),
             'title' => 'Hem',
         ],
+        'chat' => [
+            'text'  =>'Chat',
+            'url'   => $this->di->get('url')->create('chat'),
+            'title' => 'Chat',
+        ],
         'websockets' => [
             'text'  =>'Websockets',
             'url'   => $this->di->get('url')->create('websockets'),

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // Your code here
     'use strict';
-    console.log('Starting javascript.');
+    console.log('Starting ws_client.js javascript.');
 
     // Log to console
     function logMessage(message) {
