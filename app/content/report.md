@@ -1,5 +1,19 @@
 # Rapporter
 
+## kmom06
+
+Skriv redovisningstext på din me-sida. Skriv ett stycke (minst 15 meningar) om kursmomentet. Reflektera över svårigheter, problem, lösningar, erfarenheter, lärdomar, resultatet, etc.
+
+Se till att följande frågor besvaras i texten:
+
+    Vilka möjligheter ser du med HTML5 Websockets?
+    Vad tycker du om Node.js och hur känns det att programmera i det?
+    Beskriv hur du löste echo-servern och broadcast-servern.
+    Beskriv och berätta om din chatt. Förklara hur du byggde din chatt-server och förklara protokollet.
+    Gjorde du något på extrauppgiften?
+
+
+
 ## kmom05
 
 Väldigt rolig övning på flera sätt. Jag valde att göra en variant på [Space Invaders](http://www.student.bth.se/~frnf15/dbwebb-kurser/javascript/me/kmom05/lekplats/spaceinvaders/). Kul att programmera ett spel. Här hade jag velat lägga mer tid på att få in mer funktioner. Än roligare har varit att få programmera lite större sjok med javascript mer självständigt. I början var det ganska trögt och krävde en del debuggging med console.log och debuggern för att få ut saker på rätt sätt. Men efter att fått in några features som funkade började det flyta på bättre och bättre i kodandet.

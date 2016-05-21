@@ -57,7 +57,7 @@ $app->router->add('source', function () use ($app) {
 // Chat client
 $app->router->add('chat', function () use ($app) {
     $app->theme->setTitle("Chat");
-    $app->views->add('websockets/chat', [
+    $app->views->add('Websockets/chat', [
     ]);
 
 });
@@ -65,7 +65,7 @@ $app->router->add('chat', function () use ($app) {
 // Websockets
 $app->router->add('websockets', function () use ($app) {
     $app->theme->setTitle("Websockets");
-    $app->views->add('websockets/page', [
+    $app->views->add('Websockets/page', [
     ]);
 
 });
