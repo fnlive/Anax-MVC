@@ -8,7 +8,7 @@ $(document).ready(function () {
         var datetime, date = new Date();
         datetime = date.getFullYear() + '-' + Fnlive.pad((date.getMonth()+1)) + '-' + Fnlive.pad(date.getDate()) + ' ' + Fnlive.pad(date.getHours()) + ':' + Fnlive.pad(date.getMinutes()) + ':' + Fnlive.pad(date.getSeconds());
         $('<p>' + datetime + ': ' + message + '</p>').prependTo('#output');
-    };
+    }
 
     var url = $('#url').val(),
         websocket,
@@ -38,12 +38,12 @@ $(document).ready(function () {
             $('#status').addClass('connected');
             $('#constatus').html(' connected to <strong>' + url + '</strong> with <strong>' + subProtocol + '</strong>');
             websocket.send('Thanks for letting me connect to you.');
-        }
+        };
 
         websocket.onmessage = function(event) {
             console.log('Receiving message: ' + event.data);
-            logMessage(event.data)
-        }
+            logMessage(event.data);
+        };
 
         // Eventhandler when the websocket is closed.
         websocket.onclose = function() {
@@ -51,7 +51,7 @@ $(document).ready(function () {
             logMessage('The websocket is now closed.');
             $('#status').removeClass('connected');
             $('#constatus').html('disconnected');
-        }
+        };
     }, false);
 
 

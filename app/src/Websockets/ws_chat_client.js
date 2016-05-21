@@ -8,7 +8,7 @@ $(document).ready(function () {
         var datetime, date = new Date();
         datetime = date.getFullYear() + '-' + Fnlive.pad((date.getMonth()+1)) + '-' + Fnlive.pad(date.getDate()) + ' ' + Fnlive.pad(date.getHours()) + ':' + Fnlive.pad(date.getMinutes()) + ':' + Fnlive.pad(date.getSeconds());
         $('<p>' + datetime + ': ' + message + '</p>').prependTo('#output');
-    };
+    }
 
     function displayUsers(users) {
         $('#users').html('');
@@ -56,7 +56,7 @@ $(document).ready(function () {
                 };
                 websocket.send(JSON.stringify(msg));
                 console.log('Sending ' + JSON.stringify(msg));
-            }
+            };
 
             websocket.onmessage = function(event) {
                 var msg;
@@ -77,7 +77,7 @@ $(document).ready(function () {
                 } else if (msg.type === 'message') {
                     logMessage(' ' + msg.id + '> ' + msg.text);
                 }
-            }
+            };
 
             // Eventhandler when the websocket is closed.
             websocket.onclose = function() {
@@ -85,7 +85,7 @@ $(document).ready(function () {
                 $('#status').removeClass('connected');
                 $('#constatus').html('disconnected');
                 displayUsers([]);
-            }
+            };
         } else {
             console.log('Already connected. Readystate: ' + websocket.readyState);
         }
