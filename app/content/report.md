@@ -2,17 +2,21 @@
 
 ## kmom06
 
-Skriv redovisningstext på din me-sida. Skriv ett stycke (minst 15 meningar) om kursmomentet. Reflektera över svårigheter, problem, lösningar, erfarenheter, lärdomar, resultatet, etc.
+HTML5 Websockets verkar vara ett bra tillägg och komplement till t.ex. ajax-tekniker för att spara bandbredd och få lägre latens-tider mellan web-applikationer och webbservern/data-källor. T.ex. visualisering av data-källor som ändrar sig kan skickas asynkront från källan till klienten och uppdateras utan http-anrop. Även punkt-till-punkt och punkt-till-multi-punkt kommunikation för t.ex. vebb-baserade multi-player-spel kan dra nytta av låga latens-tider.
 
-Se till att följande frågor besvaras i texten:
+Det fungerade bra att programmera chat-servern i node.js. Det gällde bara att hålla isär websocket API'erna för klienten resp. servern som kör node.js. Node.js verkar även vara bra att kunna för att köra grunt eller gulp för jobb-automatisering. Det skulle också vara intressant att pröva bygga standalone-applikationer med [Electron](http://electron.atom.io/).
 
-    Vilka möjligheter ser du med HTML5 Websockets?
-    Vad tycker du om Node.js och hur känns det att programmera i det?
-    Beskriv hur du löste echo-servern och broadcast-servern.
-    Beskriv och berätta om din chatt. Förklara hur du byggde din chatt-server och förklara protokollet.
-    Gjorde du något på extrauppgiften?
+Echo-servern är i princip samma som i övningen. Broadcast-servern lade jag till i samma applikation som ett sub-protocol. Jag var rätt osäker på hur jag skulle lagra de olika klient-anslutningarna så jag sneglade en del i mos broadcast-server. Rättframt med att lägga connection-objektet i en array och lägga till ett connection-id i connection-objektet baserat på positionen i arrayn. Vid terminering av connecction-objektet anropas dess callback-funktion connection.on('close',...) och med hjälp av connection-id kan objektet plocka bort sig från arrayn. Vid utskick av broadcast-meddelanden loopas arrayn men då arryn är "sparse"/gles pga nedtagna connections kollas först att array-elementet är en connection och inte null.
 
+Broadcast-servern lade mycket av grunden till chat-servern. Det som saknades var att kunna se vilka personer som var uppkopplade mot servern och vem som hade skickat ett visst meddelande. Klienten behöver därför skicka in vem han är efter att ha anslutit sig till servern. När uppkopplingen tas ner skall användaren också tas bort från chatt-listan. Servern behöver därför skicka en lista på uppkopplade användare till alla klienter vid en upp/nerkoppling från en klient. För detta skapade jag ett protokoll baserat på json-objekt istället för textsträngar som i broadcast-servern. Varje meddelande har fält för meddelande-typ, sub-meddelande-typ och datum. När meddelandet skickas fortfarande som text genom omvandling med JSON.stringify(). Beroende på meddelande-typ så finns ett antal andra fält. Vid anslutning skickar klient sitt användarnamn (id) till servern. Servern lägger till användarnamnet i connection-objektet för klienten, skickar vidare meddelande om ny användare till alla klienter samt skickar uppdaterad lista på alla anslutna användare. Servern skickar också ett meddelande när en klient kopplar ner sig. Klienten behöver därför inte lagra några tillstånd hos sig förutom sin egen connection utan detta lagras i servern och skickas till klienterna när någon förändring sker.
 
+Jag hade problem med mina två javascript för chat- och echo/broadcast-klienten när jag laddade dem bägge två då de kopplade event-hanterare till samma knappar. Jag döpte då om knapparna på de två sidorna till unika css id. Jag testar i bägge javascripten om rätt knappar finns definierade. Om så, så körs javascriptet. Annars inte. Litet ful-hack som nog går att hantera snyggare. T.ex. kunna styra vilka script som laddas för varje sida.
+
+Jag gjorde inget på extrauppgiften.
+
+Källkod till [chat-servern: http://www.student.bth.se/~frnf15/dbwebb-kurser/javascript/me/kmom06/Anax-MVC/webroot/source?path=app/src/Websockets/chat-echo-broadcast-server.js](http://www.student.bth.se/~frnf15/dbwebb-kurser/javascript/me/kmom06/Anax-MVC/webroot/source?path=app/src/Websockets/chat-echo-broadcast-server.js).
+
+[Chat-klient: http://www.student.bth.se/~frnf15/dbwebb-kurser/javascript/me/kmom06/Anax-MVC/webroot/chat](http://www.student.bth.se/~frnf15/dbwebb-kurser/javascript/me/kmom06/Anax-MVC/webroot/chat).
 
 ## kmom05
 

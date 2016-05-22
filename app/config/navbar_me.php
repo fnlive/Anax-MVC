@@ -30,11 +30,12 @@ return [
             'url'   => $this->di->get('url')->create('webshop'),
             'title' => 'Butik',
         ],
-        'spaceinvaders' => [
-            'text'  =>'Space Invaders',
-            'url'   => $this->di->get('url')->create('spaceinvaders'),
-            'title' => 'Space Invaders',
-        ],
+        // TODO: Fix space invaders on me-page
+        // 'spaceinvaders' => [
+        //     'text'  =>'Space Invaders',
+        //     'url'   => $this->di->get('url')->create('spaceinvaders'),
+        //     'title' => 'Space Invaders',
+        // ],
         // TODO: fix so lighbox works again.
         // 'fnbox' => [
         //     'text'  =>'fnbox',

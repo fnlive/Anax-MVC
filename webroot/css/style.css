@@ -127,8 +127,9 @@ article img {
      border: 2px solid gray;
      height: 300px;
      overflow: scroll;
-     width: 100%;
      float: left;
+     /*min-width: 100px;*/
+     width: 95%;
  }
 
 #users p, #output p {
@@ -138,9 +139,16 @@ article img {
  .console {
      overflow: auto;
  }
- .container {
+ .container-output, .container-users {
      float: left;
  }
+ .container-output {
+     width: 70%;
+ }
+ .container-users {
+     width: 30%;
+ }
+
  .disconnected {
      background-color: salmon;
  }
