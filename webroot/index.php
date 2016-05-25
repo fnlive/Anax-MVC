@@ -54,6 +54,30 @@ $app->router->add('source', function () use ($app) {
 
 });
 
+// Chat client
+$app->router->add('chat', function () use ($app) {
+    $app->theme->setTitle("Chat");
+    $app->views->add('Websockets/chat', [
+    ]);
+
+});
+
+// Websockets
+$app->router->add('websockets', function () use ($app) {
+    $app->theme->setTitle("Websockets");
+    $app->views->add('Websockets/page', [
+    ]);
+
+});
+
+// Space Invaders
+$app->router->add('spaceinvaders', function () use ($app) {
+    $app->theme->setTitle("Space Invaders");
+    $app->views->add('Spaceinvaders/page', [
+    ]);
+
+});
+
 // webbshop
 $app->router->add('webshop', function () use ($app) {
     $app->theme->setTitle("Butik");

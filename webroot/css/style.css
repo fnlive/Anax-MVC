@@ -116,3 +116,44 @@ article img {
 .clearboth {
     clear: both;
 }
+
+/**
+ * Here comes specific style for websockets page.
+ */
+ #users, #output  {
+     font-size: 80%;
+     /*background-color: white;*/
+     background-color: #ECE0E0;
+     border: 2px solid gray;
+     height: 300px;
+     overflow: scroll;
+     float: left;
+     /*min-width: 100px;*/
+     width: 95%;
+ }
+
+#users p, #output p {
+     margin-top: 0;
+     margin-bottom: 0;
+ }
+ .console {
+     overflow: auto;
+ }
+ .container-output, .container-users {
+     float: left;
+ }
+ .container-output {
+     width: 70%;
+ }
+ .container-users {
+     width: 30%;
+ }
+
+ .disconnected {
+     background-color: salmon;
+ }
+ .connected {
+     background-color: lightgreen;
+ }
+
+canvas{border:1px solid #999;background-color:#000;}

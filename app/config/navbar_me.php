@@ -15,16 +15,27 @@ return [
             'url'   => $this->di->get('url')->create(''),
             'title' => 'Hem',
         ],
+        'chat' => [
+            'text'  =>'Chat',
+            'url'   => $this->di->get('url')->create('chat'),
+            'title' => 'Chat',
+        ],
+        'websockets' => [
+            'text'  =>'Websockets',
+            'url'   => $this->di->get('url')->create('websockets'),
+            'title' => 'Websockets',
+        ],
         'webshop' => [
             'text'  =>'Butik',
             'url'   => $this->di->get('url')->create('webshop'),
             'title' => 'Butik',
         ],
-        'lekplats' => [
-            'text'  =>'Lekplats',
-            'url'   => $this->di->get('url')->create('lekplats'),
-            'title' => 'Lekplats',
-        ],
+        // TODO: Fix space invaders on me-page
+        // 'spaceinvaders' => [
+        //     'text'  =>'Space Invaders',
+        //     'url'   => $this->di->get('url')->create('spaceinvaders'),
+        //     'title' => 'Space Invaders',
+        // ],
         // TODO: fix so lighbox works again.
         // 'fnbox' => [
         //     'text'  =>'fnbox',
